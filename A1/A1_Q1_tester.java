@@ -171,12 +171,13 @@ public class A1_Q1_tester {
     public void testInsertKeyNotFound() {
         Open_Addressing openAddressing = new Open_Addressing(4, 0, -1);
         int key = 5;
-        int m = openAddressing.m;
         int collisions = openAddressing.insertKey(key);
         assertEquals(0, collisions);
-        // should visit 4 slots before giving up
+        // only needs to visit 1 slot, array is [-1, 5, -1, -1] but
+        // once you increment once from first slot, find that
+        // the next slot is empty
         int collisions2 = openAddressing.removeKey(13);
-        assertEquals(m, collisions2);
+        assertEquals(1, collisions2);
     }
 
 }
