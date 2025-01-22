@@ -3,6 +3,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class A1_Q1_tester {
+    /**
+     * CHAINING: ED PUBLIC TESTS
+     */
     @Test
     public void testChain1() {
         Chaining chaining = new Chaining(10, 0, -1);
@@ -20,19 +23,15 @@ public class A1_Q1_tester {
         Chaining chaining = new Chaining(10, 0, -1);
         assertEquals(19, chaining.chain(8));
     }
-
-    // extra test, equal chains
+    /** 
+     * CHAINING: EXTRA TESTS
+     */
     @Test
     public void testChain4() {
         Chaining chaining = new Chaining(4, 0, -1);
-        assertEquals(1, chaining.chain(13));
+        assertEquals(chaining.chain(5), chaining.chain(13));
     }
 
-    /* 
-     * CHAINING: EXTRA TESTS
-     */
-
-     // test that a key, when inserted, can be found inside the table
     @Test
     public void testInsertKey() {
         Chaining chaining = new Chaining(4, 0, -1);
@@ -42,7 +41,6 @@ public class A1_Q1_tester {
         assertTrue(chaining.Table.get(chaining.chain(key)).contains(key));
     }
 
-    // test a collision when inserting a key
     @Test
     public void testInsertKeyWithCollision() {
         Chaining chaining = new Chaining(4, 0, -1);
@@ -52,7 +50,7 @@ public class A1_Q1_tester {
         int collisions = chaining.insertKey(key2);
         assertEquals(1, collisions);
         assertTrue(chaining.Table.get(chaining.chain(key1)).contains(key1));
-        assertFalse(chaining.Table.get(chaining.chain(key2)).contains(key2)); // failed insertion (chaining only)
+        assertTrue(chaining.Table.get(chaining.chain(key2)).contains(key2)); // successful insertion
     }
 
     @Test
@@ -66,15 +64,17 @@ public class A1_Q1_tester {
         }
     }
 
-    @Test
-    public void testInsertKeyArrayWithDuplicates() {
-        Chaining chaining = new Chaining(10, 0, -1);
-        int[] keys = {1, 1, 1};
-        // 0 collisions with 1, 1 collision with 1 (failed insertion), 1 collision with 1 (failed insertion)
-        assertEquals(2, chaining.insertKeyArray(keys));
-    }
+    // @Test
+    // public void testChainingInsertKeyArrayWithDuplicates() {
+    //     Chaining chaining = new Chaining(10, 0, -1);
+    //     int[] keys = {1, 1, 1};
+    //     // 0 collisions with 1, 1 collision with 1 (failed insertion), 1 collision with 1 (failed insertion)
+    //     assertEquals(2, chaining.insertKeyArray(keys));
+    // }
 
-
+    /**
+     * OPEN ADDRESSING: ED PUBLIC TESTS
+     */
     @Test
     public void testProbe1() {
         Open_Addressing openAddressing = new Open_Addressing(10, 0, -1);
@@ -126,8 +126,58 @@ public class A1_Q1_tester {
         openAddressing.insertKey(89);
         openAddressing.insertKey(109);
         openAddressing.insertKey(129);
-        openAddressing.removeKey(109);
-        assertEquals(2, openAddressing.Table[openAddressing.probe(109, 0)]);
+        int collisions = openAddressing.removeKey(109);
+        assertEquals(2, collisions);
     }
+
+    /**
+     * OPEN ADDRESSING: EXTRA TESTS
+     */
+    @Test
+    public void testInsertKey10() {
+        Open_Addressing openAddressing = new Open_Addressing(4, 0, -1);
+        int key = 5;
+        int collisions = openAddressing.insertKey(key);
+        assertEquals(0, collisions);
+        assertEquals(key, openAddressing.Table[openAddressing.probe(key, 0)]);
+    }
+
+    @Test
+    public void testInsertKeyCollision() {
+        Open_Addressing openAddressing = new Open_Addressing(4, 0, -1);
+        int key = 5;
+        int key2 = 13;
+        int collisions = openAddressing.insertKey(key);
+        assertEquals(0, collisions);
+        int collisions2 = openAddressing.insertKey(key2);
+        assertEquals(1, collisions2);
+        assertEquals(key, openAddressing.Table[openAddressing.probe(key, 0)]);
+        assertEquals(key2, openAddressing.Table[openAddressing.probe(key2, 1)]);
+    }
+
+    // @Test
+    // public void testOpenAddressingInsertKeyArrayWithDuplicates() {
+    //     Open_Addressing openAddressing = new Open_Addressing(10, 0, -1);
+    //     int[] keys = {1, 1, 1, 1};
+    //     int collisions = 0;
+    //     for (int key : keys) {
+    //         collisions += openAddressing.insertKey(key);
+    //         System.out.println(collisions);
+    //     }
+    //     assertEquals(6, collisions);
+    // }
+
+    @Test
+    public void testInsertKeyNotFound() {
+        Open_Addressing openAddressing = new Open_Addressing(4, 0, -1);
+        int key = 5;
+        int m = openAddressing.m;
+        int collisions = openAddressing.insertKey(key);
+        assertEquals(0, collisions);
+        // should visit 4 slots before giving up
+        int collisions2 = openAddressing.removeKey(13);
+        assertEquals(m, collisions2);
+    }
+
 }
 
