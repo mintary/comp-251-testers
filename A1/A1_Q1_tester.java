@@ -168,17 +168,23 @@ public class A1_Q1_tester {
     // }
 
     @Test
-    public void testInsertKeyNotFound() {
+    public void testInsertKeyNotFound1() {
+        Open_Addressing openAddressing = new Open_Addressing(4, 0, -1);
+        // need to visit 1 slot, array is [-1, -1, -1, -1] 
+        int collisions = openAddressing.removeKey(5);
+        assertEquals(1, collisions);
+    }
+
+    @Test
+    public void testInsertKeyNotFound2() {
         Open_Addressing openAddressing = new Open_Addressing(4, 0, -1);
         int key = 5;
         int collisions = openAddressing.insertKey(key);
         assertEquals(0, collisions);
-        // only needs to visit 1 slot, array is [-1, 5, -1, -1] but
-        // once you increment once from first slot, find that
-        // the next slot is empty
+        // need to visit 2 slots, array is [-1, 5, -1, -1] 
         int collisions2 = openAddressing.removeKey(13);
-        assertEquals(1, collisions2);
+        assertEquals(2, collisions2);
     }
 
-}
+}   
 
