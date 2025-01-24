@@ -2,7 +2,7 @@
 
 ## Assignment 1
 
-[x] Q1
-[x] Q2a
-[ ] Q2b
-[ ] Q3
+- [x] Q1
+- [x] Q2a
+- [ ] Q2b
+- [ ] Q3
