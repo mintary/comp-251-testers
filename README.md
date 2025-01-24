@@ -2,6 +2,7 @@
 
 ## Assignment 1
 
-### Q1 
-
-### Q2
+[x] Q1
+[x] Q2a
+[ ] Q2b
+[ ] Q3
