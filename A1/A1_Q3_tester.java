@@ -1,12 +1,13 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.*;
+import java.beans.Transient;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class A1_Q3_tester {
     @Test
-    public void testBasicExample() {
+    public void testCase1() {
         String[] posts = {
             "David no no no no nobody never",
             "Alexia why ever not",
@@ -22,71 +23,46 @@ public class A1_Q3_tester {
     }
 
     @Test
-    public void testEmptyPosts() {
-        String[] posts = {};
-        ArrayList<String> expected = new ArrayList<>();
-        assertEquals(expected, A1_Q3.Discussion_Board(posts));
-    }
-
-    @Test
-    public void testSinglePost() {
-        String[] posts = { "David singleword" };
-        ArrayList<String> expected = new ArrayList<>(Arrays.asList("singleword"));
-        assertEquals(expected, A1_Q3.Discussion_Board(posts));
-    }
-
-    @Test
-    public void testLexicographicalSorting() {
+    public void testCase2() {
         String[] posts = {
-            "Alice apple banana cherry",
-            "Bob banana cherry apple",
-            "Charlie cherry banana apple"
-        };
-        ArrayList<String> expected = new ArrayList<>(Arrays.asList("apple", "banana", "cherry"));
-        assertEquals(expected, A1_Q3.Discussion_Board(posts));
-    }
-
-    @Test
-    public void testWordsWithSameFrequency() {
-        String[] posts = {
-            "User1 aaa bbb ccc",
-            "User2 ccc aaa bbb",
-            "User3 bbb aaa ccc"
-        };
-        ArrayList<String> expected = new ArrayList<>(Arrays.asList("aaa", "bbb", "ccc"));
-        assertEquals(expected, A1_Q3.Discussion_Board(posts));
-    }
-
-    @Test
-    public void testNoCommonWords() {
-        String[] posts = {
-            "David apples oranges",
-            "Alexia bananas grapes",
-            "Parham mangoes pineapples"
+            "Villain avast",
+            "Scoundrel ahoy"
         };
         ArrayList<String> expected = new ArrayList<>();
         assertEquals(expected, A1_Q3.Discussion_Board(posts));
     }
 
     @Test
-    public void testAllWordsUsedOnce() {
+    public void testCase3() {
         String[] posts = {
-            "Alice x",
-            "Bob x",
-            "Charlie x"
+            "user1 chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp",
+            "user2 chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp",
+            "user3 chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp",
+            "user1 chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp chomp"
         };
-        ArrayList<String> expected = new ArrayList<>(Arrays.asList("x"));
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList("chomp"));
         assertEquals(expected, A1_Q3.Discussion_Board(posts));
     }
 
     @Test
-    public void testRepeatedPostsBySameUser() {
+    public void testCase5() {
         String[] posts = {
-            "David hello hello hello",
-            "Alexia hello hello hello",
-            "Parham hello hello hello"
+            "user1 doubledutch double double dutch",
+            "user2 dutch doubledutch doubledutch double",
+            "user3 not double dutch doubledutch"
         };
-        ArrayList<String> expected = new ArrayList<>(Arrays.asList("hello"));
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList("double", "doubledutch", "dutch"));
+        assertEquals(expected, A1_Q3.Discussion_Board(posts));
+    }
+
+    @Test
+    public void testCase6() {
+        String[] posts = {
+            "James gobble de gook",
+            "Bill gobble",
+            "james de gook"
+        };
+        ArrayList<String> expected = new ArrayList<>();
         assertEquals(expected, A1_Q3.Discussion_Board(posts));
     }
 
@@ -102,13 +78,24 @@ public class A1_Q3_tester {
     }
 
     @Test
-    public void testDuplicateWordsAcrossUsers() {
+    public void testLexicographicalSorting() {
         String[] posts = {
-            "David duplicate duplicate",
-            "Alexia duplicate duplicate",
-            "Parham duplicate duplicate"
+            "Alice apple banana cherry",
+            "Bob banana cherry apple",
+            "Charlie cherry banana apple"
         };
-        ArrayList<String> expected = new ArrayList<>(Arrays.asList("duplicate"));
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList("apple", "banana", "cherry"));
+        assertEquals(expected, A1_Q3.Discussion_Board(posts));
+    }
+
+    @Test
+    public void testLexicographicalSortingChallenge() {
+        String[] posts = {
+            "Alice abdomen agency apple",
+            "Bob balance agency abdomen",
+            "Charlie apple abdomen agendcy"
+        };
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList("abdomen", "agency", "apple"));
         assertEquals(expected, A1_Q3.Discussion_Board(posts));
     }
 }
