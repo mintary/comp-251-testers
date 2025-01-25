@@ -2,5 +2,7 @@
 
 ## Assignment 1
 
-### Q1 
-Passing all these test cases should make it possible to pass all the tests on Ed.
+- [x] Q1
+- [x] Q2a
+- [ ] Q2b
+- [ ] Q3
