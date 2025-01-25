@@ -4,5 +4,5 @@
 
 - [x] Q1
 - [x] Q2a
-- [ ] Q2b
+- [x] Q2b (additional tests likely needed)
 - [ ] Q3
