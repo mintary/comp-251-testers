@@ -93,7 +93,7 @@ public class A1_Q3_tester {
         String[] posts = {
             "Alice abdomen agency apple",
             "Bob balance agency abdomen",
-            "Charlie apple abdomen agendcy"
+            "Charlie apple abdomen agency"
         };
         ArrayList<String> expected = new ArrayList<>(Arrays.asList("abdomen", "agency", "apple"));
         assertEquals(expected, A1_Q3.Discussion_Board(posts));
