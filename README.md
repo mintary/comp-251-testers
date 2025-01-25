@@ -3,6 +3,6 @@
 ## Assignment 1
 
 - [x] Q1
-- [x] Q2a
-- [ ] Q2b
+- [x] Q2a (additional tests likely needed)
+- [x] Q2b (additional tests likely needed)
 - [ ] Q3
