@@ -95,7 +95,7 @@ public class A1_Q3_tester {
             "Bob balance agency abdomen",
             "Charlie apple abdomen agency"
         };
-        ArrayList<String> expected = new ArrayList<>(Arrays.asList("abdomen", "agency", "apple"));
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList("abdomen", "agency"));
         assertEquals(expected, A1_Q3.Discussion_Board(posts));
     }
 }
